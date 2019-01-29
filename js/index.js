@@ -55,8 +55,20 @@ let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
 
 
-//nav
-let anchorQuery = document.querySelectorAll('a');
+//NAV BAR
+let anchorQuery = document.querySelectorAll("a");
+
+let navbarAppend = document.createElement("a")
+let navbarAppendText = document.createTextNode("Navbar Append")
+navbarAppend.append(navbarAppendText)
+
+let navbarPrepend = document.createElement("a")
+let navbarPrependText = document.createTextNode("Navbar Prepend")
+navbarPrepend.append(navbarPrependText)
+
+let navBar = document.querySelector("nav")
+navBar.append(navbarAppend)
+navBar.prepend(navbarPrepend)
 
 //chain on a dot filter to only get nav ones
 const navKeys = Object.keys(siteContent["nav"]).filter(key => {
@@ -65,9 +77,16 @@ const navKeys = Object.keys(siteContent["nav"]).filter(key => {
   } 
 })
 
+
 anchorQuery.forEach((element, index) => {
   // element.textContent = siteContent["nav"][`nav-item-${index}`];
   element.textContent = siteContent["nav"][navKeys[index]];
+  element.style.color = 'green';
+})
+
+let updatedAnchorQuery = document.querySelectorAll('a')
+updatedAnchorQuery.forEach(element => {
+  element.style.color = 'green';
 })
 
 //CTA
@@ -75,7 +94,7 @@ let ctaImg = document.getElementById("cta-img")
 ctaImg.setAttribute('src', siteContent["cta"]["img-src"])
 
 let h1Element = document.querySelector("h1")
-h1Element.textContent = siteContent["cta"]["h1"]
+h1Element.innerHTML = "Dom<br>is<br>Awesome";
 
 let buttonElement = document.querySelector("button")
 buttonElement.textContent = siteContent["cta"]["button"]
