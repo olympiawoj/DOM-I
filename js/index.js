@@ -16,13 +16,18 @@ const siteContent = {
   "main-content": {
     "features-h4":"Features",
     "features-content": "Features content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
+   
     "about-h4":"About",
     "about-content": "About content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
+    
     "middle-img-src": "img/mid-page-accent.jpg",
+    
     "services-h4":"Services",
     "services-content": "Services content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
+    
     "product-h4":"Product",
     "product-content": "Product content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
+    
     "vision-h4":"Vision",
     "vision-content": "Vision content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
   },
@@ -37,6 +42,91 @@ const siteContent = {
   },
 };
 
+/*The DOM is an object representation of the HTML 
+elements of a web page
+
+We can access the DOM through the global JS object document
+We can select individual elements or groups of them
+using document's built-in methods
+*/
+
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+
+//NAV BAR
+let anchorQuery = document.querySelectorAll("a");
+
+let navbarAppend = document.createElement("a")
+let navbarAppendText = document.createTextNode("Navbar Append")
+navbarAppend.append(navbarAppendText)
+
+let navbarPrepend = document.createElement("a")
+let navbarPrependText = document.createTextNode("Navbar Prepend")
+navbarPrepend.append(navbarPrependText)
+
+let navBar = document.querySelector("nav")
+navBar.append(navbarAppend)
+navBar.prepend(navbarPrepend)
+
+//chain on a dot filter to only get nav ones
+const navKeys = Object.keys(siteContent["nav"]).filter(key => {
+  if (key.includes("nav")){
+    return key
+  } 
+})
+
+
+anchorQuery.forEach((element, index) => {
+  // element.textContent = siteContent["nav"][`nav-item-${index}`];
+  element.textContent = siteContent["nav"][navKeys[index]];
+  element.style.color = 'green';
+})
+
+let updatedAnchorQuery = document.querySelectorAll('a')
+updatedAnchorQuery.forEach(element => {
+  element.style.color = 'green';
+})
+
+//CTA
+let ctaImg = document.getElementById("cta-img")
+ctaImg.setAttribute('src', siteContent["cta"]["img-src"])
+
+let h1Element = document.querySelector("h1")
+h1Element.innerHTML = "Dom<br>is<br>Awesome";
+
+let buttonElement = document.querySelector("button")
+buttonElement.textContent = siteContent["cta"]["button"]
+
+//H4
+let h4Query = document.querySelectorAll("h4")
+h4Query[0].textContent = siteContent["main-content"]["features-h4"]
+h4Query[1].textContent = siteContent["main-content"]["about-h4"]
+h4Query[2].textContent = siteContent["main-content"]["services-h4"]
+h4Query[3].textContent = siteContent["main-content"]["product-h4"]
+h4Query[4].textContent = siteContent["main-content"]["vision-h4"]
+h4Query[5].textContent = siteContent["contact"]["contact-h4"]
+
+//Main Content P
+let p = document.querySelectorAll(".text-content p")
+p[0].textContent = siteContent["main-content"]["features-content"]
+p[1].textContent = siteContent["main-content"]["about-content"]
+p[2].textContent = siteContent["main-content"]["services-content"]
+p[3].textContent = siteContent["main-content"]["product-content"]
+p[4].textContent = siteContent["main-content"]["vision-content"]
+
+
+
+let middleImg = document.getElementById("middle-img")
+middleImg.setAttribute('src', siteContent["main-content"]["middle-img-src"])
+
+//Contact
+let contactP = document.querySelectorAll(".contact p")
+contactP[0].textContent = siteContent["contact"]["address"]
+contactP[1].textContent = siteContent["contact"]["phone"]
+contactP[2].textContent = siteContent["contact"]["email"]
+
+
+let footerP = document.querySelector("footer p")
+footerP.textContent = siteContent["footer"]["copyright"]
